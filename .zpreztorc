@@ -1,0 +1,31 @@
+
+# Prezto config file for zsh
+# http://www.github.com/zysh
+
+zstyle ':prezto:*:*' color 'yes'
+
+# Modules to load
+zstyle ':prezto:load' pmodule \
+  'environment' \
+  'terminal' \
+  'editor' \
+  'history' \
+  'directory' \
+  'spectrum' \
+  'utility' \
+  'completion' \
+  'history-substring-search' \
+  'prompt'
+
+# VI Keybindings
+zstyle ':prezto:module:editor' key-bindings 'vi'
+
+# Dot Expansion
+zstyle ':prezto:module:editor' dot-expansion 'yes'
+
+# Prompt/Theme
+zstyle ':prezto:module:prompt' theme 'zysh'
+
+# Substring history highlighting
+zstyle ':prezto:module:history-substring-search:color' found 'underline'
+zstyle ':prezto:module:history-substring-search:color' not-found 'fg=red,underline'
