@@ -1,72 +1,80 @@
-
-" Vim config file
-" http://www.github.com/zysh
-
-" Pathogen for managing vim packages
-execute pathogen#infect()
-
-"  Syntax + Filetype rules
-syntax enable
-syntax on
-filetype on
-filetype plugin on
-filetype plugin indent on
-
-" JS
-au FileType javascript set sw=2
-au FileType javascript set ts=2
-
-" HTML
-au FileType html set sw=2
-au FileType html set ts=2
-
-" Ruby
-au FileType ruby set sw=2
-au FileType ruby set ts=2
-au FileType eruby set sw=2
-au FileType eruby set ts=2
-" CSS
-au FileType css set sw=2
-au FileType css set ts=2
-
-" Alias commands for caps
-command W w
-command Wa wa
-command Wq Wq
-
-" Theme settings
-set t_Co=456
+" Colors + Schemes
+set t_Co=256
 set background=dark
-colorscheme solarized
-let g:solarized_termcolors=256
+colorscheme molokai
+syntax enable
 
-" Color settings to match theme
-hi Normal ctermbg=NONE
-hi LineNr ctermbg=NONE
-hi TabLine ctermbg=NONE
-hi TabLineFill ctermbg=NONE
-hi SpecialKey ctermbg=NONE
-hi NonText ctermfg=236
+" Spaces & Tabs
+set tabstop=4       			" number of visual spaces per tab
+set softtabstop=4   			" number of spaces in tab when editing
+set expandtab       			" tabs are spaces
 
-" Shows line number
-set number
+" Filetype recognition for pyflakes
+filetype on                     " enables filetype detection
+filetype plugin on              " enables filetype specific plugins
 
-" Tabs are now spaces
-set expandtab
+" UI Config
+set number              		" show line numbers
+set showcmd             		" show command in bottom bar
+set cursorline          		" highlight current line
+filetype indent on      		" load filetype-specific indent files
+set wildmenu            		" visual autocomplete for command menu
+set lazyredraw          		" redraw only when we need to.
+set showmatch           		" highlight matching [{()}]
 
-" Cap on open tabs
-set tabpagemax=50
+" Searching
+set incsearch				    " search as characters are entered
+set hlsearch				    " highlight matches
 
-" Sets auto indent + spacing
-set ai 
-set sw=2
-set ts=2
+" turn off search highlight
+nnoremap <leader><space> :nohlsearch<CR>
+
+" Folding
+
+" Set foldenable          		" enable folding
+set foldlevelstart=10   		" open most folds by default
+set foldnestmax=10      		" 10 nested fold max
+
+" space open/closes folds
+nnoremap <space> za
+set foldmethod=indent   		" fold based on indent level
+
+" Movement
+
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+
+" move to beginning/end of line
+nnoremap B ^
+nnoremap E $
+
+" $/^ doesn't do anything
+nnoremap $ <nop>
+nnoremap ^ <nop>
+
+" highlight last inserted text
+nnoremap gV `[v`]
 
 " Directories for swap, undo and bak "
 set dir=~/.vim/.swap
 set undodir=~/.vim/.undo
 set backupdir=~/.vim/.backup
 
-" Sets newline and tab chars
-set list
-set listchars=tab:▸\ ,eol:¬
+" Fix Strange backspace problem
+set backspace=indent,eol,start
+
+" strips trailing whitespace at the end of files. this
+" is called on buffer write in the autogroup above.
+function! <SID>StripTrailingWhitespaces()
+    " save last search & cursor position
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    let @/=_s
+    call cursor(l, c)
+endfunction
+
+" Pathogen install bundles!
+execute pathogen#infect()
