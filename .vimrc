@@ -65,7 +65,7 @@ set backupdir=~/.vim/.backup
 set backspace=indent,eol,start
 
 " Setup showing column numbers
-set rule
+set ruler
 
 " strips trailing whitespace at the end of files. this
 " is called on buffer write in the autogroup above.
