@@ -56,11 +56,6 @@ nnoremap ^ <nop>
 " highlight last inserted text
 nnoremap gV `[v`]
 
-" Directories for swap, undo and bak "
-set dir=~/.vim/.swap
-set undodir=~/.vim/.undo
-set backupdir=~/.vim/.backup
-
 " Fix Strange backspace problem
 set backspace=indent,eol,start
 
