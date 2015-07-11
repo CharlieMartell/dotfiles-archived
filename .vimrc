@@ -64,6 +64,9 @@ set backupdir=~/.vim/.backup
 " Fix Strange backspace problem
 set backspace=indent,eol,start
 
+" Setup showing column numbers
+set rule
+
 " strips trailing whitespace at the end of files. this
 " is called on buffer write in the autogroup above.
 function! <SID>StripTrailingWhitespaces()
