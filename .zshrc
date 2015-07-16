@@ -5,16 +5,11 @@ export ZSH=$HOME/.oh-my-zsh
 alias vi="vim"
 
 # Simple alias
-alias g="grep"
 alias ls="ls --color=auto"
 
-# ...other stuff...
-
 # Tmux setup 
-
-#if [[ ! $TERM =~ screen ]]; then
-#    exec tmux
-#fi
+alias tmls="tmux list-sessions"
+alias tmas="tmux attach-session -t"
 
 # Set 256 colors
 export TERM='screen-256color'
@@ -23,7 +18,6 @@ export TERM='screen-256color'
 alias please='sudo $(fc -ln -1)' 
 
 # Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
 ZSH_THEME="bira"
 
 # Source zsh file
@@ -31,8 +25,7 @@ source /etc/zfile/z.sh
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
-
-plugins=(git)
+plugins=()
 
 source $ZSH/oh-my-zsh.sh
 
@@ -41,8 +34,8 @@ autoload -Uz manydots-magic
 manydots-magic
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/mac/bin:/Users/mac/bin:/Users/mac/422/k/k-distribution/target/release/k/bin:/opt/local/bin:"
-# export MANPATH="/usr/local/man:$MANPATH"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/mac/bin:/Users/mac/bin:/opt/local/bin:"
+export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
  export LANG=en_US.UTF-8
