@@ -1,21 +1,59 @@
-" Colors + Schemes
+"Vundle pre-setup
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" Install some vundle bundles
+
+"Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim' 
+
+"Other vim plugins
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+Plugin 'kevinw/pyflakes-vim'
+Plugin 'rking/ag.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'ehamberg/vim-cute-python'
+Plugin 'valloric/YouCompleteMe'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'scrooloose/nerdtree'
+Plugin 'nathanaelkane/vim-indent-guides'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype indent on    " required
+filetype plugin on    " required
+
+" Nertree binding
+autocmd vimenter * NERDTree
+map <C-m> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" utilsnips fixes
+let g:UltiSnipsExpandTrigger="<c-j>"
+
+" Filetype recognition for pyflakes
+filetype on                     " enables filetype detection
+
+"get color scheme right
 set t_Co=256
 set background=dark
 syntax enable
+colorscheme zenburn
 
 " Spaces & Tabs
 set tabstop=4       			" number of visual spaces per tab
 set softtabstop=4   			" number of spaces in tab when editing
 set expandtab       			" tabs are spaces
 
-" Filetype recognition for pyflakes
-filetype on                     " enables filetype detection
-filetype plugin on              " enables filetype specific plugins
-
 " UI Config
 set number              		" show line numbers
 set showcmd             		" show command in bottom bar
-filetype indent on      		" load filetype-specific indent files
 set wildmenu            		" visual autocomplete for command menu
 set lazyredraw          		" redraw only when we need to.
 set showmatch           		" highlight matching [{()}]
@@ -73,8 +111,3 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 
-" Fix underline color
-highlight SpellBad term=underline gui=undercurl guisp=Orange
-
-" Pathogen install bundles!
-execute pathogen#infect()
