@@ -19,6 +19,7 @@ filetype indent on      		" load filetype-specific indent files
 set wildmenu            		" visual autocomplete for command menu
 set lazyredraw          		" redraw only when we need to.
 set showmatch           		" highlight matching [{()}]
+set cursorline                  " Shows a line under cursor
 
 " Searching
 set incsearch				    " search as characters are entered
@@ -71,6 +72,9 @@ function! <SID>StripTrailingWhitespaces()
     let @/=_s
     call cursor(l, c)
 endfunction
+
+" Fix underline color
+highlight SpellBad term=underline gui=undercurl guisp=Orange
 
 " Pathogen install bundles!
 execute pathogen#infect()
