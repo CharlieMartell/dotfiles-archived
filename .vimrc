@@ -10,8 +10,8 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim' 
 
 "Other vim plugins
-" plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
+Plugin 'jondkinney/dragvisuals.vim'
 Plugin 'kevinw/pyflakes-vim'
 Plugin 'rking/ag.vim'
 Plugin 'kien/ctrlp.vim'
@@ -23,18 +23,54 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/nerdtree'
 Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'bling/vim-airline'
+Plugin 'Townk/vim-autoclose'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+
 filetype indent on    " required
 filetype plugin on    " required
 
-" Nertree binding
+" Dragvisuals -------------------------
+vmap  <expr>  P        DVB_Duplicate()
+vmap  <expr>  H        DVB_Drag('left')
+vmap  <expr>  L        DVB_Drag('right')
+vmap  <expr>  J        DVB_Drag('down')
+vmap  <expr>  K        DVB_Drag('up') 
+
+" Autoclose ------------------------------
+
+" Fix to let ESC work as espected with Autoclose plugin
+let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
+
+" Vim Airline ----------------------------
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" Nertree binding ---------------------
 autocmd vimenter * NERDTree
+autocmd VimEnter * wincmd p
 map <C-m> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-" utilsnips fixes
+" Utilsnips fixes ---------------------
 let g:UltiSnipsExpandTrigger="<c-j>"
 
 " Filetype recognition for pyflakes
