@@ -25,6 +25,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'bling/vim-airline'
 Plugin 'Townk/vim-autoclose'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'xolox/vim-easytags'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -89,6 +91,7 @@ set expandtab       			" tabs are spaces
 
 " UI Config
 set number              		" show line numbers
+highlight LineNr ctermbg=237
 set showcmd             		" show command in bottom bar
 set wildmenu            		" visual autocomplete for command menu
 set lazyredraw          		" redraw only when we need to.
