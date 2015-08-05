@@ -69,7 +69,7 @@ let g:airline_symbols.whitespace = 'Ξ'
 " Nertree binding ---------------------
 autocmd vimenter * NERDTree
 autocmd VimEnter * wincmd p
-map <C-m> :NERDTreeToggle<CR>
+map <F3> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Utilsnips fixes ---------------------
