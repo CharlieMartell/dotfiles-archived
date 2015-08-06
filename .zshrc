@@ -18,7 +18,7 @@ export TERM='screen-256color'
 alias please='sudo $(fc -ln -1)' 
 
 # Set name of the theme to load.
-ZSH_THEME="bira"
+ZSH_THEME="cmartell"
 
 # Source zsh file
 source /etc/zfile/z.sh
@@ -35,8 +35,11 @@ autoload -Uz manydots-magic
 manydots-magic
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/mac/bin:/Users/mac/bin:/opt/local/bin:/Users/mac/repositories/solaire:"
+export PATH="/usr/local/Cellar:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/mac/bin:/Users/mac/bin:/opt/local/bin:/Users/mac/repositories/solaire:"
 export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
  export LANG=en_US.UTF-8
+
+# OPAM configuration
+. /Users/mac/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

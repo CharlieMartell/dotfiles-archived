@@ -11,6 +11,7 @@ Plugin 'gmarik/Vundle.vim'
 
 "Other vim plugins
 Plugin 'tpope/vim-fugitive'
+Plugin 'vim-scripts/vim-ocaml-conceal'
 Plugin 'jondkinney/dragvisuals.vim'
 Plugin 'kevinw/pyflakes-vim'
 Plugin 'rking/ag.vim'
@@ -26,7 +27,7 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'bling/vim-airline'
 Plugin 'Townk/vim-autoclose'
 Plugin 'edkolev/tmuxline.vim'
-Plugin 'xolox/vim-easytags'
+Plugin 'scrooloose/syntastic'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -45,6 +46,10 @@ vmap  <expr>  K        DVB_Drag('up')
 
 " Fix to let ESC work as espected with Autoclose plugin
 let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
+
+" Syntastic -----------------------------
+let g:syntastic_python_checkers = ['pyflakes']
+let g:syntastic_ocaml_checkers = ['merlin']
 
 " Vim Airline ----------------------------
 
@@ -75,6 +80,15 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " Utilsnips fixes ---------------------
 let g:UltiSnipsExpandTrigger="<c-j>"
 
+" Merlin for OCaml --------------------
+if executable('ocamlmerlin') && has('python')
+  let s:ocamlmerlin = substitute(system('opam config var share'), '\n$', '', '''') . "/ocamlmerlin"
+  execute "set rtp+=".s:ocamlmerlin."/vim"
+  execute "set rtp+=".s:ocamlmerlin."/vimbufsync"
+endif
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
+
 " Filetype recognition for pyflakes
 filetype on                     " enables filetype detection
 
@@ -97,6 +111,8 @@ set wildmenu            		" visual autocomplete for command menu
 set lazyredraw          		" redraw only when we need to.
 set showmatch           		" highlight matching [{()}]
 set cursorline                  " Shows a line under cursor
+highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
+match OverLength /\%81v.*/
 
 " Searching
 set incsearch				    " search as characters are entered
@@ -137,6 +153,32 @@ set backspace=indent,eol,start
 
 " Setup showing column numbers
 set ruler
+
+" function for python indenting
+au BufEnter *.py setf python
+au BufEnter *.pyc setf python
+au FileType python call FT_python()
+function! FT_python()
+    set tabstop=4       			" number of visual spaces per tab
+    set softtabstop=4   			" number of spaces in tab when editing
+    set expandtab       			" tabs are spaces
+    set shiftwidth=2
+    set tabstop=2
+    let opamshare=system("opam config var share | tr -d '\n'")
+    execute "autocmd FileType ocaml source".opamshare."/vim/syntax/ocp-indent.vim"
+endfunction
+
+" ocp-indent for OCaml indenting
+execute ":source " . "/Users/mac/.opam/4.01.0/share/vim/syntax/ocp-indent.vim"
+au BufEnter *.ml setf ocaml
+au BufEnter *.mli setf ocaml
+au FileType ocaml call FT_ocaml()
+function! FT_ocaml()
+    set shiftwidth=2
+    set tabstop=2
+    let opamshare=system("opam config var share | tr -d '\n'")
+    execute "autocmd FileType ocaml source".opamshare."/vim/syntax/ocp-indent.vim"
+endfunction
 
 " strips trailing whitespace at the end of files. this
 " is called on buffer write in the autogroup above.
