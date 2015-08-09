@@ -11,6 +11,8 @@ Plugin 'gmarik/Vundle.vim'
 
 "Other vim plugins
 Plugin 'tpope/vim-fugitive'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'bling/vim-airline'
 Plugin 'vim-scripts/vim-ocaml-conceal'
 Plugin 'jondkinney/dragvisuals.vim'
 Plugin 'kevinw/pyflakes-vim'
@@ -24,10 +26,10 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/nerdtree'
 Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'bling/vim-airline'
 Plugin 'Townk/vim-autoclose'
-Plugin 'edkolev/tmuxline.vim'
 Plugin 'scrooloose/syntastic'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'unblevable/quick-scope'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -48,28 +50,13 @@ vmap  <expr>  K        DVB_Drag('up')
 let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
 
 " Syntastic -----------------------------
+
 let g:syntastic_python_checkers = ['pyflakes']
 let g:syntastic_ocaml_checkers = ['merlin']
 
-" Vim Airline ----------------------------
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-
-" unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
+" Quick scope ---------------------------
+let g:qs_first_occurrence_highlight_color = 79
+let g:qs_second_occurrence_highlight_color = 133
 
 " Nertree binding ---------------------
 autocmd vimenter * NERDTree
@@ -92,6 +79,9 @@ execute "set rtp+=" . g:opamshare . "/merlin/vim"
 " Filetype recognition for pyflakes
 filetype on                     " enables filetype detection
 
+" Set leader
+let mapleader = "\<Space>"
+
 "get color scheme right
 set t_Co=256
 set background=dark
@@ -110,16 +100,12 @@ set showcmd             		" show command in bottom bar
 set wildmenu            		" visual autocomplete for command menu
 set lazyredraw          		" redraw only when we need to.
 set showmatch           		" highlight matching [{()}]
+set encoding=utf-8
 set cursorline                  " Shows a line under cursor
-highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
-match OverLength /\%81v.*/
 
 " Searching
 set incsearch				    " search as characters are entered
 set hlsearch				    " highlight matches
-
-" turn off search highlight
-nnoremap <leader><space> :nohlsearch<CR>
 
 " Folding
 
@@ -128,7 +114,6 @@ set foldlevelstart=10   		" open most folds by default
 set foldnestmax=10      		" 10 nested fold max
 
 " space open/closes folds
-nnoremap <space> zA
 set foldmethod=indent   		" fold based on indent level
 
 " Movement
