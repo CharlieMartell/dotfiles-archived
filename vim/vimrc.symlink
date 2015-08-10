@@ -82,6 +82,7 @@ filetype on                     " enables filetype detection
 set t_Co=256                    " Explicitly tell vim that the terminal supports 256 colors"
 set background=dark             " Setting dark mode "
 colorscheme railscasts
+let g:airline_theme='tomorrow'
 
 " Spaces & Tabs
 set tabstop=4       			" number of visual spaces per tab
