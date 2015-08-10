@@ -5,7 +5,6 @@
 " load plugins from vundle
 source ~/.vim/plugins.vim
 
-" Abbreviations
 abbr funciton function
 abbr teh the
 abbr tempalte template
@@ -15,7 +14,6 @@ set autoread                    " detect when a file is changed
 
 " make backspace behave in a sane manner
 set backspace=indent,eol,start
-
 " set a map leader for more key combos
 let mapleader = ','
 let g:mapleader = ','
@@ -31,14 +29,12 @@ syntax enable                   " show syntax highlighting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin helpers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " Dragvisuals -------------------------
 vmap  <expr>  P        DVB_Duplicate()
 vmap  <expr>  H        DVB_Drag('left')
 vmap  <expr>  L        DVB_Drag('right')
 vmap  <expr>  J        DVB_Drag('down')
 vmap  <expr>  K        DVB_Drag('up') 
-
 " Autoclose ------------------------------
 
 " Fix to let ESC work as espected with Autoclose plugin
@@ -75,7 +71,7 @@ filetype on                     " enables filetype detection
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set t_Co=256                    " Explicitly tell vim that the terminal supports 256 colors"
-colorscheme railscasts
+colorscheme Tomorrow-Night
 
 " Spaces & Tabs
 set tabstop=4       			" number of visual spaces per tab
