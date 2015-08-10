@@ -29,6 +29,15 @@ syntax enable                   " show syntax highlighting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin helpers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" tmuxline ----------------------------
+let g:tmuxline_preset = {
+      \'a'    : '#S',
+      \'c'    : ['#(whoami)', '#(uptime | cud -d " " -f 1,2,3)'],
+      \'win'  : ['#I', '#W'],
+      \'cwin' : ['#I', '#W', '#F'],
+      \'x'    : ['#(osascript ~/.dotfiles/applescripts/spotify.scpt)'],
+      \'y'    : ['%R', '%a', '%Y'],
+      \'z'    : '#H'}
 " Dragvisuals -------------------------
 vmap  <expr>  P        DVB_Duplicate()
 vmap  <expr>  H        DVB_Drag('left')

@@ -31,7 +31,6 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Townk/vim-autoclose'
 Plugin 'scrooloose/syntastic'
 Plugin 'easymotion/vim-easymotion'
-Plugin 'unblevable/quick-scope'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
