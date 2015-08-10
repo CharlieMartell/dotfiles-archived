@@ -18,7 +18,7 @@ export TERM='screen-256color'
 alias please='sudo $(fc -ln -1)' 
 
 # Set name of the theme to load.
-ZSH_THEME="cmartell"
+ZSH_THEME="norm"
 
 # Source zsh file
 source /etc/zfile/z.sh

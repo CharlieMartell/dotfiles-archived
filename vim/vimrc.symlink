@@ -1,41 +1,36 @@
-"Vundle pre-setup
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Install some vundle bundles
+" load plugins from vundle
+source ~/.vim/plugins.vim
 
-"Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim' 
+" Abbreviations
+abbr funciton function
+abbr teh the
+abbr tempalte template
 
-"Other vim plugins
-Plugin 'tpope/vim-fugitive'
-Plugin 'edkolev/tmuxline.vim'
-Plugin 'bling/vim-airline'
-Plugin 'vim-scripts/vim-ocaml-conceal'
-Plugin 'jondkinney/dragvisuals.vim'
-Plugin 'kevinw/pyflakes-vim'
-Plugin 'rking/ag.vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'ehamberg/vim-cute-python'
-Plugin 'valloric/YouCompleteMe'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'scrooloose/nerdtree'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'Townk/vim-autoclose'
-Plugin 'scrooloose/syntastic'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'unblevable/quick-scope'
+set nocompatible                " not compatible with vi
+set autoread                    " detect when a file is changed
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+" make backspace behave in a sane manner
+set backspace=indent,eol,start
 
-filetype indent on    " required
-filetype plugin on    " required
+" set a map leader for more key combos
+let mapleader = ','
+let g:mapleader = ','
+
+" code folding settings
+set foldmethod=syntax           " fold based on indent
+set foldnestmax=10              " deepest fold is 10 levels
+set nofoldenable                " don't fold by default
+set foldlevel=1
+
+syntax enable                   " show syntax highlighting
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugin helpers
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Dragvisuals -------------------------
 vmap  <expr>  P        DVB_Duplicate()
@@ -53,10 +48,6 @@ let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
 
 let g:syntastic_python_checkers = ['pyflakes']
 let g:syntastic_ocaml_checkers = ['merlin']
-
-" Quick scope ---------------------------
-let g:qs_first_occurrence_highlight_color = 79
-let g:qs_second_occurrence_highlight_color = 133
 
 " Nertree binding ---------------------
 autocmd vimenter * NERDTree
@@ -79,14 +70,12 @@ execute "set rtp+=" . g:opamshare . "/merlin/vim"
 " Filetype recognition for pyflakes
 filetype on                     " enables filetype detection
 
-" Set leader
-let mapleader = "\<Space>"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => User interface
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"get color scheme right
-set t_Co=256
-set background=dark
-syntax enable
-colorscheme zenburn
+set t_Co=256                    " Explicitly tell vim that the terminal supports 256 colors"
+colorscheme railscasts
 
 " Spaces & Tabs
 set tabstop=4       			" number of visual spaces per tab
@@ -95,7 +84,6 @@ set expandtab       			" tabs are spaces
 
 " UI Config
 set number              		" show line numbers
-highlight LineNr ctermbg=237
 set showcmd             		" show command in bottom bar
 set wildmenu            		" visual autocomplete for command menu
 set lazyredraw          		" redraw only when we need to.
@@ -106,6 +94,8 @@ set cursorline                  " Shows a line under cursor
 " Searching
 set incsearch				    " search as characters are entered
 set hlsearch				    " highlight matches
+set smartcase " case-sensitive if expresson contains a capital letter
+set hlsearch
 
 " Folding
 
@@ -114,21 +104,7 @@ set foldlevelstart=10   		" open most folds by default
 set foldnestmax=10      		" 10 nested fold max
 
 " space open/closes folds
-set foldmethod=indent   		" fold based on indent level
-
-" Movement
-
-" move vertically by visual line
-nnoremap j gj
-nnoremap k gk
-
-" move to beginning/end of line
-nnoremap B ^
-nnoremap E $
-
-" $/^ doesn't do anything
-nnoremap $ <nop>
-nnoremap ^ <nop>
+set foldmethod=syntax   		" fold based on syntax level
 
 " highlight last inserted text
 nnoremap gV `[v`]
@@ -139,6 +115,67 @@ set backspace=indent,eol,start
 " Setup showing column numbers
 set ruler
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Mappings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" General mappings/shortcuts for functionality
+" Additional, plugin-specific mappings are located under
+" the plugins section
+
+" Close the current buffer
+" noremap <C-x> :q<cr>
+
+" remove extra whitespace
+nmap <leader><space> :%s/\s\+$<cr>
+
+" toggle paste mode
+map <leader>v :set paste!<cr>
+
+" edit ~/.vimrc
+map <leader>ev :e! ~/.vimrc<cr>
+" edit vim plugins
+map <leader>evp :e! ~/.vim/plugins.vim<cr>
+" edit vim functions
+map <leader>evf :e! ~/.vim/functions.vim<cr>
+" edit gitconfig
+map <leader>eg :e! ~/.gitconfig<cr>
+
+" activate spell-checking alternatives
+nmap ;s :set invspell spelllang=en<cr>
+
+" toggle invisible characters
+set invlist
+set listchars=tab:▸\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
+highlight SpecialKey ctermbg=none " make the highlighting of tabs less annoying
+set showbreak=↪
+nmap <leader>l :set list!<cr>
+
+" switch between current and last buffer
+nmap <leader>. <c-^>
+
+" enable . command in visual mode
+vnoremap . :normal .<cr>
+
+" toggle cursor line
+nnoremap <leader>i :set cursorline!<cr>
+
+" moving up and down work as you would expect
+nnoremap <silent> j gj
+nnoremap <silent> k gk
+nnoremap <silent> ^ g^
+nnoremap <silent> $ g$
+
+" move to beginning/end of line
+nnoremap B ^
+nnoremap E $
+
+" $/^ doesn't do anything
+nnoremap $ <nop>
+nnoremap ^ <nop>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Filetype specific plugins
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " function for python indenting
 au BufEnter *.py setf python
 au BufEnter *.pyc setf python
@@ -163,17 +200,5 @@ function! FT_ocaml()
     set tabstop=2
     let opamshare=system("opam config var share | tr -d '\n'")
     execute "autocmd FileType ocaml source".opamshare."/vim/syntax/ocp-indent.vim"
-endfunction
-
-" strips trailing whitespace at the end of files. this
-" is called on buffer write in the autogroup above.
-function! <SID>StripTrailingWhitespaces()
-    " save last search & cursor position
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    let @/=_s
-    call cursor(l, c)
 endfunction
 
