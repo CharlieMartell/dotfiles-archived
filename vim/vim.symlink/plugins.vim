@@ -11,6 +11,7 @@ Plugin 'gmarik/Vundle.vim'
 
 "Other vim plugins
 Plugin 'tpope/vim-fugitive'
+Plugin 'morhetz/gruvbox'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'bling/vim-airline'
 Plugin 'vim-scripts/vim-ocaml-conceal'

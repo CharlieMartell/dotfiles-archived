@@ -19,7 +19,7 @@ let mapleader = ','
 let g:mapleader = ','
 
 " code folding settings
-set foldmethod=syntax           " fold based on indent
+set foldmethod=indent           " fold based on indent
 set foldnestmax=10              " deepest fold is 10 levels
 set nofoldenable                " don't fold by default
 set foldlevel=1
@@ -71,6 +71,7 @@ filetype on                     " enables filetype detection
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set t_Co=256                    " Explicitly tell vim that the terminal supports 256 colors"
+set background=dark             " Setting dark mode "
 colorscheme Tomorrow-Night
 
 " Spaces & Tabs
@@ -92,15 +93,6 @@ set incsearch				    " search as characters are entered
 set hlsearch				    " highlight matches
 set smartcase " case-sensitive if expresson contains a capital letter
 set hlsearch
-
-" Folding
-
-" Set foldenable          		" enable folding
-set foldlevelstart=10   		" open most folds by default
-set foldnestmax=10      		" 10 nested fold max
-
-" space open/closes folds
-set foldmethod=syntax   		" fold based on syntax level
 
 " highlight last inserted text
 nnoremap gV `[v`]
