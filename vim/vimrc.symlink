@@ -29,6 +29,33 @@ syntax enable                   " show syntax highlighting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin helpers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Quickscope
+let g:qs_first_occurrence_highlight_color = 123
+let g:qs_second_occurrence_highlight_color = 21
+function! Quick_scope_selective(movement)
+    let needs_disabling = 0
+    if !g:qs_enable
+        QuickScopeToggle
+        redraw
+        let needs_disabling = 1
+    endif
+
+    let letter = nr2char(getchar())
+
+    if needs_disabling
+        QuickScopeToggle
+    endif
+
+    return a:movement . letter
+endfunction
+
+let g:qs_enable = 0
+
+for i in  [ 'f', 'F', 't', 'T' ]
+    execute 'noremap <expr> <silent>' . i . " Quick_scope_selective('". i . "')"
+endfor
+
 " tmuxline ----------------------------
 let g:tmuxline_preset = {
       \'a'    : '#S',
@@ -64,6 +91,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 let g:UltiSnipsExpandTrigger="<c-j>"
 
 " Merlin for OCaml --------------------
+
+" Vim needs to be built with Python scripting support, and must be
+" able to find Merlin's executable on PATH.
 if executable('ocamlmerlin') && has('python')
   let s:ocamlmerlin = substitute(system('opam config var share'), '\n$', '', '''') . "/ocamlmerlin"
   execute "set rtp+=".s:ocamlmerlin."/vim"
@@ -184,8 +214,6 @@ function! FT_python()
     set expandtab       			" tabs are spaces
     set shiftwidth=2
     set tabstop=2
-    let opamshare=system("opam config var share | tr -d '\n'")
-    execute "autocmd FileType ocaml source".opamshare."/vim/syntax/ocp-indent.vim"
 endfunction
 
 " ocp-indent for OCaml indenting
@@ -199,4 +227,13 @@ function! FT_ocaml()
     let opamshare=system("opam config var share | tr -d '\n'")
     execute "autocmd FileType ocaml source".opamshare."/vim/syntax/ocp-indent.vim"
 endfunction
-
+augroup collumnLimit
+  autocmd!
+  autocmd BufEnter,WinEnter,FileType * 
+        \ highlight CollumnLimit ctermbg=red guibg=red
+  let collumnLimit = 79 " feel free to customize
+  let pattern =
+        \ '\%<' . (collumnLimit+1) . 'v.\%>' . collumnLimit . 'v'
+  autocmd BufEnter,WinEnter,FileType * 
+        \ let w:m1=matchadd('CollumnLimit', pattern, -1)
+augroup END

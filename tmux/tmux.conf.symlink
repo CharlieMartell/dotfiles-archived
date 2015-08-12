@@ -67,7 +67,7 @@ bind h select-pane -L
 bind j select-pane -D
 bind k select-pane -U
 bind l select-pane -R
-dbind -r C-h select-window -t :-
+bind -r C-h select-window -t :-
 bind -r C-l select-window -t :+
 # vim + tmux
 is_vim='echo "#{pane_current_command}" | grep -iqE "(^|\/)g?(view|n?vim?)(diff)?$"'
@@ -81,14 +81,6 @@ bind -r H resize-pane -L 10
 bind -r J resize-pane -D 10
 bind -r K resize-pane -U 10
 bind -r L resize-pane -R 10
-
-# enable mouse support for switching panes/windows
-# NOTE: This breaks selecting/copying text on OSX
-# To select text as expected, hold Option to disable it (iTerm2)
-setw -g mode-mouse on
-set -g mouse-select-pane on
-set -g mouse-resize-pane on
-set -g mouse-select-window on
 
 # maximizing and restoring windows
 unbind Up
@@ -110,3 +102,4 @@ bind -t vi-copy 'y' copy-selection
 bind C-c run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
 bind C-v run "tmux set-buffer $(reattach-to-user-namespace pbpaste); tmux paste-buffer")
 
+bind-key y set-window-option synchronize-panes
