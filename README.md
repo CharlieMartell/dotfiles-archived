@@ -2,6 +2,8 @@
 
 Have some dots :point_right: . . . 
 
+![img](showcase/showcase.png)
+
 ## Contents
 
 + zsh configuration
