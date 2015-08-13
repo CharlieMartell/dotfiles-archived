@@ -149,9 +149,18 @@ set ruler
 " General mappings/shortcuts for functionality
 " Additional, plugin-specific mappings are located under
 " the plugins section
-
-" Close the current buffer
-" noremap <C-x> :q<cr>
+autocmd BufWritePre *.py,*.js :call <SID>StripTrailingWhitespaces()
+function! <SID>StripTrailingWhitespaces()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    %s/\s\+$//e
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
 
 " remove extra whitespace
 nmap <leader><space> :%s/\s\+$<cr>
