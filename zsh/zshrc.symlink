@@ -4,6 +4,7 @@ export ZSH=$DOTFILES/oh-my-zsh
 
 # load all zsh config files
 for config ($DOTFILES/zsh/**/*.zsh) source $config
+for script ($DOTFILES/scripts/**/*) source $script
 
 fpath+=~/.zsh
 
@@ -20,6 +21,10 @@ if [[ -d /usr/local/sbin ]]; then
     export PATH=/usr/local/bin:$PATH 
 fi
 
+if [[ -d $DOTFILES/bin ]]; then
+    export PATH=$DOTFILES/bin:$PATH 
+fi
+
 # adding path directory for custom scripts
 export PATH=$DOTFILES/bin:$PATH
 
@@ -34,9 +39,6 @@ ZSH_THEME="norm"
 
 # User configuration
 export PATH=$PATH:/usr/local/Cellar:/usr/local/etc:/Users/mac/repositories/solaire:
-
-#source z
-source /usr/local/etc/profile.d/z.sh
 
 # source omz
 source $ZSH/oh-my-zsh.sh
