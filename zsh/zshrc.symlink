@@ -11,7 +11,7 @@ fpath+=~/.zsh
 autoload -U compinit
 compinit
 
-source $DOTFILES/zsh/antigen_plugs/plugs.zsh
+plugins=(colored-man zsh-syntax-highlighting alias-tips )
 export EDITOR='vim'
 
 export PATH=/usr/local/bin:$PATH
@@ -40,5 +40,6 @@ source /usr/local/etc/profile.d/z.sh
 
 # source omz
 source $ZSH/oh-my-zsh.sh
+
 # OPAM configuration
 . /Users/mac/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
