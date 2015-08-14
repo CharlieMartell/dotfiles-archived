@@ -155,24 +155,8 @@ defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 # echo "Make Safari’s search banners default to Contains instead of Starts With"
 # defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
 
-# Remove useless icons from Safari’s bookmarks bar
-# defaults write com.apple.Safari ProxiesInBookmarksBar "()"
-
 # echo "Add a context menu item for showing the Web Inspector in web views"
 # defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
-
-#echo "Only use UTF-8 in Terminal.app"
-#defaults write com.apple.terminal StringEncodings -array 4
-
-# echo "Disable the Ping sidebar in iTunes"
-# defaults write com.apple.iTunes disablePingSidebar -bool true
-
-# echo "Disable all the other Ping stuff in iTunes"
-# defaults write com.apple.iTunes disablePing -bool true
-
-# echo "Make ⌘ + F focus the search input in iTunes"
-# defaults write com.apple.iTunes NSUserKeyEquivalents -dict-add "Target Search Field" "@F"
-
 # Disable send and reply animations in Mail.app
 # defaults write com.apple.Mail DisableReplyAnimations -bool true
 # defaults write com.apple.Mail DisableSendAnimations -bool true

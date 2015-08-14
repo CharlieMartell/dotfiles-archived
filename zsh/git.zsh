@@ -47,3 +47,4 @@ function g() {
         git s
     fi
 }
+
