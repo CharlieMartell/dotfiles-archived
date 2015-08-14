@@ -1,6 +1,6 @@
 # Path to your oh-my-zsh installation.
 export DOTFILES=$HOME/.dotfiles
-export ZSH=$DOTFILES/zsh
+export ZSH=$DOTFILES/oh-my-zsh
 
 # load all zsh config files
 for config ($DOTFILES/zsh/**/*.zsh) source $config
@@ -11,7 +11,7 @@ fpath+=~/.zsh
 autoload -U compinit
 compinit
 
-source $ZSH/antigen_plugs/plugs.zsh
+source $DOTFILES/zsh/antigen_plugs/plugs.zsh
 export EDITOR='vim'
 
 export PATH=/usr/local/bin:$PATH
@@ -30,6 +30,7 @@ fi
 
 # Set 256 colors
 export TERM='screen-256color'
+ZSH_THEME="norm"
 
 # User configuration
 export PATH=$PATH:/usr/local/Cellar:/usr/local/etc:/Users/mac/repositories/solaire:
@@ -37,5 +38,7 @@ export PATH=$PATH:/usr/local/Cellar:/usr/local/etc:/Users/mac/repositories/solai
 #source z
 source /usr/local/etc/profile.d/z.sh
 
+# source omz
+source $ZSH/oh-my-zsh.sh
 # OPAM configuration
 . /Users/mac/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
