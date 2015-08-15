@@ -11,7 +11,7 @@ fpath+=~/.zsh
 autoload -U compinit
 compinit
 
-plugins=(colored-man zsh-syntax-highlighting alias-tips )
+plugins=(colored-man zsh-syntax-highlighting alias-tips)
 export EDITOR='vim'
 
 export PATH=/usr/local/bin:$PATH
@@ -42,6 +42,13 @@ export PATH=$PATH:/usr/local/Cellar:/usr/local/etc:/Users/mac/repositories/solai
 # source omz & z
 source $ZSH/oh-my-zsh.sh
 source $DOTFILES/scripts/z.sh
+
+#Launch directly into ctrlp vim 
+ctrlp() {
+    </dev/tty vim -c CtrlP
+}
+zle -N ctrlp
+ bindkey "^p" ctrlp
 
 # OPAM configuration
 . /Users/mac/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
