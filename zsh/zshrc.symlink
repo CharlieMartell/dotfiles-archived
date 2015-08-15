@@ -37,7 +37,7 @@ export TERM='screen-256color'
 ZSH_THEME="norm"
 
 # User configuration
-export PATH=$PATH:/usr/local/Cellar:/usr/local/etc:/Users/mac/repositories/solaire:
+export PATH=$PATH:/usr/local/Cellar:/usr/local/etc:/Users/mac/repositories/solaire:/opt/local/bin:
 
 # source omz & z
 source $ZSH/oh-my-zsh.sh
