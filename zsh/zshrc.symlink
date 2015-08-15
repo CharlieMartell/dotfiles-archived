@@ -4,7 +4,6 @@ export ZSH=$DOTFILES/oh-my-zsh
 
 # load all zsh config files
 for config ($DOTFILES/zsh/**/*.zsh) source $config
-for script ($DOTFILES/scripts/**/*) source $script
 
 fpath+=~/.zsh
 
@@ -40,8 +39,9 @@ ZSH_THEME="norm"
 # User configuration
 export PATH=$PATH:/usr/local/Cellar:/usr/local/etc:/Users/mac/repositories/solaire:
 
-# source omz
+# source omz & z
 source $ZSH/oh-my-zsh.sh
+source $DOTFILES/scripts/z.sh
 
 # OPAM configuration
 . /Users/mac/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
