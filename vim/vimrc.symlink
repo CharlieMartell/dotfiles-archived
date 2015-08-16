@@ -29,6 +29,9 @@ syntax enable                   " show syntax highlighting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin helpers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"fzf runtime
+set rtp+=~/.fzf
+nnoremap <C-t> :FZF<CR>
 
 " Quickscope
 let g:qs_first_occurrence_highlight_color = 123

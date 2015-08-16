@@ -32,6 +32,11 @@ set -sg escape-time 0
 unbind =
 bind = select-layout tiled
 
+# cycle through panes
+# unbind C-a
+# unbind o # this is the default key for cycling panes
+# bind ^A select-pane -t:.+
+
 # make window/pane index start with 1
 set -g base-index 1
 setw -g pane-base-index 1
@@ -77,7 +82,24 @@ bind -r J resize-pane -D 10
 bind -r K resize-pane -U 10
 bind -r L resize-pane -R 10
 
+# maximizing and restoring windows
+unbind Up
+bind Up new-window -d -n fullscreen \; swap-pane -s fullscreen.1 \; select-window -t fullscreen
+unbind Down
+bind Down last-window \; swap-pane -s fullscreen.1 \; kill-window -t fullscreen
+
+# set vi mode for copy mode
+setw -g mode-keys vi
+# more settings to make copy-mode more vim-like
+unbind [
+bind Escape copy-mode
+unbind p
+bind p paste-buffer
+bind -t vi-copy 'v' begin-selection
+bind -t vi-copy 'y' copy-selection
+
 # Buffers to/from Mac clipboard, yay tmux book from pragprog
 bind C-c run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
 bind C-v run "tmux set-buffer $(reattach-to-user-namespace pbpaste); tmux paste-buffer")
 
+bind-key y set-window-option synchronize-panes
