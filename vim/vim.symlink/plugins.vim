@@ -11,6 +11,8 @@ Plugin 'gmarik/Vundle.vim'
 
 "Other vim plugins
 Plugin 'tpope/vim-fugitive'
+Plugin 'junegunn/goyo.vim'
+Plugin 'junegunn/limelight.vim'
 Plugin 'junegunn/fzf'
 Plugin 'unblevable/quick-scope'
 Plugin 'christoomey/vim-tmux-navigator'
