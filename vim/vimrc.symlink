@@ -62,35 +62,49 @@ for i in  [ 'f', 'F', 't', 'T' ]
 endfor
 
 " startify -- ----------------------------------------------------------------
-autocmd User Startified setlocal cursorline
-
-let g:startify_enable_special         = 0
-let g:startify_files_number           = 8
-let g:startify_change_to_dir          = 1
-let g:startify_session_autoload       = 1
-let g:startify_session_persistence    = 1
-let g:startify_session_delete_buffers = 1
-
+" plugins: vim-startify {{{2
 let g:startify_list_order = [
-\ ['   MRU:'],
-\ 'files',
-\ ['   MRU within this dir:'],
-\ 'dir',
-\ ['   Sessions:'],
-\ 'sessions',
-\ ['   Bookmarks:'],
-\ 'bookmarks',
-\ ]
+      \ ['   MRU '],
+      \ 'files' ,
+      \ ['   MRU DIR '],
+      \ 'dir',
+      \ ['   Sessions '],
+      \ 'sessions',
+      \ ['   Bookmarks '],
+      \ 'bookmarks',
+      \ ]
+
+let g:startify_relative_path          = 0
+let g:startify_files_number           = 8
+let g:startify_session_persistence    = 0
+let g:startify_session_autoload       = 0
+let g:startify_session_delete_buffers = 1
+let g:startify_change_to_dir          = 1
+let g:startify_enable_special         = 0
+let g:startify_enable_unsafe          = 0
+
+let g:startify_skiplist = [
+      \ 'COMMIT_EDITMSG',
+      \ 'bundle/.*/doc',
+      \ '/data/repo/neovim/runtime/doc',
+      \ '/Users/mhi/local/vim/share/vim/vim74/doc',
+      \ ]
 
 let g:startify_bookmarks = [
         \ '~/.dotfiles/vim/vimrc.symlink',
         \ ]
-
+hi StartifyBracket ctermfg=240
+hi StartifyFooter  ctermfg=111
+hi StartifyHeader  ctermfg=203
+hi StartifyNumber  ctermfg=215
+hi StartifyPath    ctermfg=245
+hi StartifySlash   ctermfg=240
 let g:startify_custom_footer =
   \ ['', "   Praise the Sun", '']
 
-let g:startify_custom_header =
+let g:startify_custom_header = 
   \ map(split(system('solairesays'), '\n'), '"   ". v:val') + ['','']
+
 " tmuxline -------------------------------------------------------------------
 let g:tmuxline_preset = {
       \'a'    : '#S',
@@ -299,13 +313,3 @@ function! FT_ocaml()
     let opamshare=system("opam config var share | tr -d '\n'")
     execute "autocmd FileType ocaml source".opamshare."/vim/syntax/ocp-indent.vim"
 endfunction
-augroup collumnLimit
-  autocmd!
-  autocmd BufEnter,WinEnter,FileType * 
-        \ highlight CollumnLimit ctermbg=red guibg=red
-  let collumnLimit = 79 " feel free to customize
-  let pattern =
-        \ '\%<' . (collumnLimit+1) . 'v.\%>' . collumnLimit . 'v'
-  autocmd BufEnter,WinEnter,FileType * 
-        \ let w:m1=matchadd('CollumnLimit', pattern, -1)
-augroup END
