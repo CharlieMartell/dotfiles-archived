@@ -62,6 +62,33 @@ for i in  [ 'f', 'F', 't', 'T' ]
 endfor
 
 " startify -- ----------------------------------------------------------------
+autocmd User Startified setlocal cursorline
+
+let g:startify_enable_special         = 0
+let g:startify_files_number           = 8
+let g:startify_change_to_dir          = 1
+let g:startify_session_autoload       = 1
+let g:startify_session_persistence    = 1
+let g:startify_session_delete_buffers = 1
+
+let g:startify_list_order = [
+\ ['   MRU:'],
+\ 'files',
+\ ['   MRU within this dir:'],
+\ 'dir',
+\ ['   Sessions:'],
+\ 'sessions',
+\ ['   Bookmarks:'],
+\ 'bookmarks',
+\ ]
+
+let g:startify_bookmarks = [
+        \ '~/.dotfiles/vim/vimrc.symlink',
+        \ ]
+
+let g:startify_custom_footer =
+  \ ['', "   Praise the Sun", '']
+
 let g:startify_custom_header =
   \ map(split(system('solairesays'), '\n'), '"   ". v:val') + ['','']
 " tmuxline -------------------------------------------------------------------
