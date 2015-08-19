@@ -61,6 +61,9 @@ for i in  [ 'f', 'F', 't', 'T' ]
     execute 'noremap <expr> <silent>' . i . " Quick_scope_selective('". i . "')"
 endfor
 
+" startify -- ----------------------------------------------------------------
+let g:startify_custom_header =
+  \ map(split(system('solairesays'), '\n'), '"   ". v:val') + ['','']
 " tmuxline -------------------------------------------------------------------
 let g:tmuxline_preset = {
       \'a'    : '#S',

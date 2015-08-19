@@ -11,6 +11,7 @@ Plugin 'gmarik/Vundle.vim'
 
 "Other vim plugins
 Plugin 'tpope/vim-fugitive'
+Plugin 'mhinz/vim-startify'
 Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/limelight.vim'
 Plugin 'junegunn/fzf'
