@@ -1,6 +1,6 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " load plugins from vundle
 source ~/.vim/plugins.vim
@@ -26,16 +26,16 @@ set foldlevel=1
 
 syntax enable                   " show syntax highlighting
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin helpers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Map goyo
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" goyo------------------------------------------------------------------------
 nnoremap <leader>z :Goyo<CR>
-"fzf runtime
+"fzf runtime------------------------------------------------------------------
 set rtp+=~/.fzf
 nnoremap <C-t> :FZF<CR>
 
-" Quickscope
+" Quickscope------------------------------------------------------------------
 let g:qs_first_occurrence_highlight_color = 123
 let g:qs_second_occurrence_highlight_color = 21
 function! Quick_scope_selective(movement)
@@ -61,7 +61,7 @@ for i in  [ 'f', 'F', 't', 'T' ]
     execute 'noremap <expr> <silent>' . i . " Quick_scope_selective('". i . "')"
 endfor
 
-" tmuxline ----------------------------
+" tmuxline -------------------------------------------------------------------
 let g:tmuxline_preset = {
       \'a'    : '#S',
       \'c'    : ['#(whoami)', '#(uptime | cud -d " " -f 1,2,3)'],
@@ -70,23 +70,23 @@ let g:tmuxline_preset = {
       \'x'    : ['#(osascript ~/.dotfiles/applescripts/spotify.scpt)'],
       \'y'    : ['%R', '%a', '%Y'],
       \'z'    : '#H'}
-" Dragvisuals -------------------------
+" Dragvisuals ----------------------------------------------------------------
 vmap  <expr>  P        DVB_Duplicate()
 vmap  <expr>  H        DVB_Drag('left')
 vmap  <expr>  L        DVB_Drag('right')
 vmap  <expr>  J        DVB_Drag('down')
 vmap  <expr>  K        DVB_Drag('up') 
-" Autoclose ------------------------------
+" Autoclose ------------------------------------------------------------------
 
 " Fix to let ESC work as espected with Autoclose plugin
 let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
 
-" Syntastic -----------------------------
+" Syntastic ------------------------------------------------------------------
 
 let g:syntastic_python_checkers = ['pyflakes']
 let g:syntastic_ocaml_checkers = ['merlin']
 
-" Nertree binding ---------------------
+" Nertree binding ------------------------------------------------------------
 autocmd vimenter * NERDTree
 autocmd VimEnter * wincmd p
 map <F3> :NERDTreeToggle<CR>
@@ -244,9 +244,9 @@ nnoremap E $
 nnoremap $ <nop>
 nnoremap ^ <nop>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Filetype specific plugins
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " function for python indenting
 au BufEnter *.py setf python
 au BufEnter *.pyc setf python
@@ -255,8 +255,7 @@ function! FT_python()
     set tabstop=4       			" number of visual spaces per tab
     set softtabstop=4   			" number of spaces in tab when editing
     set expandtab       			" tabs are spaces
-    set shiftwidth=2
-    set tabstop=2
+    set shiftwidth=4
 endfunction
 
 " ocp-indent for OCaml indenting
