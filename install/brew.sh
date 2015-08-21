@@ -9,6 +9,7 @@ which wget || brew install wget
 
 # development tools
 which git || brew install git
+which pip || brew install pip
 which hub || brew install hub
 which reattach-to-user-namespace || brew install reattach-to-user-namespace
 which tmux || brew install tmux

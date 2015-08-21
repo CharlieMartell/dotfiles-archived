@@ -18,6 +18,10 @@ if [ "$(uname)" == "Darwin" ]; then
 
     echo "Updating OSX settings"
     source install/osx.sh
+
+    for dir in ~/.dotfiles/python/*; do
+           sudo pip install $dir;
+    done
 fi
 
 echo "Configuring zsh as default shell"
