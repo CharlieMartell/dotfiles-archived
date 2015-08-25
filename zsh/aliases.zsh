@@ -9,6 +9,9 @@ else # OS X `ls`
     colorflag="-G"
 fi
 
+#Ctags generation
+alias gentags="ctags -R --exclude='.git' ."
+
 # Fix old vi version
 alias vi="vim"
 
