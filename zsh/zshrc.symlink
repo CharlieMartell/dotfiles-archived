@@ -11,7 +11,7 @@ fpath+=~/.zsh
 autoload -U compinit
 compinit
 
-plugins=(colored-man zsh-syntax-highlighting alias-tips)
+plugins=(colored-man zsh-syntax-highlighting brew alias-tips)
 export EDITOR='vim'
 
 export PATH=/usr/local/bin:$PATH
