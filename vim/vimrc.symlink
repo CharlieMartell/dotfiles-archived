@@ -114,12 +114,6 @@ let g:tmuxline_preset = {
       \'x'    : ['#(osascript ~/.dotfiles/applescripts/spotify.scpt)'],
       \'y'    : ['%R', '%a', '%Y'],
       \'z'    : '#H'}
-" Dragvisuals ----------------------------------------------------------------
-vmap  <expr>  P        DVB_Duplicate()
-vmap  <expr>  H        DVB_Drag('left')
-vmap  <expr>  L        DVB_Drag('right')
-vmap  <expr>  J        DVB_Drag('down')
-vmap  <expr>  K        DVB_Drag('up') 
 " Autoclose ------------------------------------------------------------------
 
 " Fix to let ESC work as espected with Autoclose plugin

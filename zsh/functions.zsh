@@ -3,6 +3,11 @@
 ####################
 
 # print available colors and their numbers
+function bt() {
+    echo "$1"
+}
+
+# print available colors and their numbers
 function colours() {
     for i in {0..255}; do
         printf "\x1b[38;5;${i}m colour${i}"

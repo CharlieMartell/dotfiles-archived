@@ -7,6 +7,9 @@ for config ($DOTFILES/zsh/**/*.zsh) source $config
 
 fpath+=~/.zsh
 
+# Set zsh vi mode 
+bindkey -v
+
 #autocomplete
 autoload -U compinit
 compinit
