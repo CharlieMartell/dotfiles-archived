@@ -9,7 +9,6 @@ abbr funciton function
 abbr teh the
 abbr tempalte template
 
-set nocompatible                " not compatible with vi
 set autoread                    " detect when a file is changed
 
 " make backspace behave in a sane manner
@@ -162,13 +161,13 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 
 " Vim needs to be built with Python scripting support, and must be
 " able to find Merlin's executable on PATH.
-if executable('ocamlmerlin') && has('python')
-  let s:ocamlmerlin = substitute(system('opam config var share'), '\n$', '', '''') . "/ocamlmerlin"
-  execute "set rtp+=".s:ocamlmerlin."/vim"
-  execute "set rtp+=".s:ocamlmerlin."/vimbufsync"
-endif
-let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
+ if executable('ocamlmerlin') && has('python')
+   let s:ocamlmerlin = substitute(system('opam config var share'), '\n$', '', '''') . "/ocamlmerlin"
+   execute "set rtp+=".s:ocamlmerlin."/vim"
+   execute "set rtp+=".s:ocamlmerlin."/vimbufsync"
+ endif
+ let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+ execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
 " Filetype recognition for pyflakes
 filetype on                     " enables filetype detection
@@ -285,6 +284,12 @@ nnoremap ^ <nop>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Filetype specific plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Let default indenting follow pythonic style
+set tabstop=4
+set softtabstop=4
+set expandtab
+set shiftwidth=4
+
 " function for python indenting
 au BufEnter *.py setf python
 au BufEnter *.pyc setf python
@@ -296,14 +301,13 @@ function! FT_python()
     set shiftwidth=4
 endfunction
 
-" ocp-indent for OCaml indenting
-execute ":source " . "/Users/mac/.opam/4.01.0/share/vim/syntax/ocp-indent.vim"
+ " Set filtype specifics for ocaml
 au BufEnter *.ml setf ocaml
 au BufEnter *.mli setf ocaml
 au FileType ocaml call FT_ocaml()
+" Set Ocaml tabstops
 function! FT_ocaml()
     set shiftwidth=2
     set tabstop=2
-    let opamshare=system("opam config var share | tr -d '\n'")
-    execute "autocmd FileType ocaml source".opamshare."/vim/syntax/ocp-indent.vim"
-endfunction
+ endfunction
+ set rtp^="/Users/charliemartell/.opam/system/share/ocp-indent/vim"

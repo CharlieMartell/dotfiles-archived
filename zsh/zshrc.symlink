@@ -15,7 +15,7 @@ autoload -U compinit
 compinit
 
 plugins=(colored-man zsh-syntax-highlighting brew alias-tips)
-export EDITOR='vim'
+export EDITOR='nvim'
 
 export PATH=/usr/local/bin:$PATH
 
@@ -39,18 +39,24 @@ fi
 export TERM='screen-256color'
 ZSH_THEME="norm"
 
+# Fix tmux navigator for neovim
+#infocmp $TERM | sed 's/kbs=^[hH]/kbs=\177/' > $TERM.titic $TERM.ti
+
 # User configuration
-export PATH=$PATH:/usr/local/Cellar:/usr/local/etc:/Users/mac/repositories/solaire:/opt/local/bin:
+export PATH=$PATH:/usr/local/Cellar:/usr/local/etc:/Users/charliemartell/repositories/solaire:/opt/local/bin:/Users/charliemartell/Library/Python:
 
 # source omz & fzf
 source $ZSH/oh-my-zsh.sh
 source $DOTFILES/scripts/z.sh
 
 # OPAM configuration
-. /Users/mac/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+eval 'opam config env' > /dev/null
+. /Users/charliemartell/.opam/opam-init/init.zsh > /dev/null 3> /dev/null || true
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # enhancd
 if [ -f "/Users/mac/.dotfiles/scripts/.enchancd/zsh/enhancd.zsh" ]; then
     source "/Users/mac/.dotfiles/scripts/.enchancd/zsh/enhancd.zsh"
 fi
+#Fish highlighting
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

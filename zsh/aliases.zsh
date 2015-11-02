@@ -1,6 +1,7 @@
 # reload zsh config
 alias reload!='source ~/.zshrc'
-alias vi="vim"
+alias vi="nvim"
+alias vim="nvim"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
