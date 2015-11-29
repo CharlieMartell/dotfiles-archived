@@ -39,11 +39,11 @@ fi
 export TERM='screen-256color'
 ZSH_THEME="norm"
 
-# Fix tmux navigator for neovim
-#infocmp $TERM | sed 's/kbs=^[hH]/kbs=\177/' > $TERM.titic $TERM.ti
+# Setup Go-path
+export GOPATH=$HOME/go
 
 # User configuration
-export PATH=$PATH:/usr/local/Cellar:/usr/local/etc:/Users/charliemartell/repositories/solaire:/opt/local/bin:/Users/charliemartell/Library/Python:
+export PATH=$PATH:$GOPATH/bin:/usr/local/Cellar:/usr/local/etc:/Users/charliemartell/repositories/solaire:/opt/local/bin:/Users/charliemartell/Library/Python:
 
 # source omz & fzf
 source $ZSH/oh-my-zsh.sh
