@@ -17,7 +17,7 @@ compinit
 plugins=(colored-man zsh-syntax-highlighting brew alias-tips)
 export EDITOR='nvim'
 
-export PATH=/usr/local/bin:$PATH
+export PATH=/usr/bin:/usr/local/bin:$PATH
 
 if [[ -d /usr/local/sbin ]]; then
     export PATH=/usr/local/bin:$PATH 

@@ -1,7 +1,8 @@
 #!/bin/sh
 
 # cli tools
-brew install macvim --override-system-vim
+# Commented out as using neovim currently, needs refactor
+# brew install macvim --override-system-vim
 which the_silver_searcher || brew install the_silver_searcher
 curl || brew install curl
 which fzf || (brew install fzf && echo "yy" | /usr/local/Cellar/fzf/HEAD/install)

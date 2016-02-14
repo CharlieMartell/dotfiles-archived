@@ -290,6 +290,16 @@ set softtabstop=4
 set expandtab
 set shiftwidth=4
 
+" function for javscript indenting
+au BufEnter *.js setf javascript
+au FileType javascript call FT_javscript()
+function! FT_python()
+    set tabstop=2       			" number of visual spaces per tab
+    set softtabstop=2   			" number of spaces in tab when editingb
+    set expandtab       			" tabs are spaces
+    set shiftwidth=2
+endfunction
+
 " function for python indenting
 au BufEnter *.py setf python
 au BufEnter *.pyc setf python
