@@ -122,6 +122,7 @@ let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
 
 let g:syntastic_python_checkers = ['pyflakes']
 let g:syntastic_ocaml_checkers = ['merlin']
+let g:syntastic_javascript_checkers = ['standard']
 
 " Nertree binding ------------------------------------------------------------
 autocmd vimenter * NERDTree
@@ -292,8 +293,10 @@ set shiftwidth=4
 
 " function for javscript indenting
 au BufEnter *.js setf javascript
-au FileType javascript call FT_javscript()
-function! FT_python()
+au FileType javascript call FT_javascript()
+function! FT_javascript()
+    autocmd bufwritepost *.js silent !standard-format -w % --format
+set autoread
     set tabstop=2       			" number of visual spaces per tab
     set softtabstop=2   			" number of spaces in tab when editingb
     set expandtab       			" tabs are spaces
